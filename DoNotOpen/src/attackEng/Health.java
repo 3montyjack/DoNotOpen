@@ -3,10 +3,10 @@ package attackEng;
 
 import main.AttackInit;
 
-public class HealthAll {
+public class Health {
 
 	int health;
-	public HealthAll(int startHealth) {
+	public Health(int startHealth) {
 		setHealth(startHealth);
 	}
 	
