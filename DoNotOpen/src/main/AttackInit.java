@@ -33,6 +33,8 @@ public class AttackInit {
 
 	private static int[] itemSpecial = { 0, 0, 0, 0, 1 };
 
+	public static int maxHealth = 120;
+
 	public static int itemNumber() {
 		if (itemName.length == itemType.length
 				&& itemName.length == itemDamage.length
