@@ -1,6 +1,5 @@
 package attackEng;
 
-import Health;
 import main.AttackInit;
 
 public class Mob {
