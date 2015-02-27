@@ -1,36 +1,43 @@
 package main;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.SwingUtilities;
 
 import attackEng.Inventory;
 import attackEng.MobList;
 
 public class Run {
+	
 
-	static MobList mobs;
-	static Inventory inv;
-
+	static MainWindow wind;
 	private Run() {
 
 	}
 
 	public static void main(String[] args) {
-		mobs = new MobList();
-		inv = new Inventory();
-		SwingUtilities.invokeLater(new Runnable() {
 
-			public void run() {
+		
+		
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
 
-				/*
-				 * for (int i = 0; i < AttackInit.mobNumber(); i++) {
-				 * System.out.println(mobs.getName(i));
-				 * System.out.println(mobs.getType(i));
-				 *  System.out.println(mobs.getHealth(i)); }
-				 */
-
-			}
-
-		});
+				@Override
+				public void run() {
+					wind = new MainWindow();
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error");
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -1,33 +1,34 @@
 package attackEng;
 
-
 import main.AttackInit;
 
 public class Health {
 
 	int health;
+
 	public Health(int startHealth) {
 		setHealth(startHealth);
 	}
-	
+
 	public void setHealth(int value) {
 		this.health = value;
 	}
-	
+
 	public void subtractHealth(int value) {
 		this.health = this.health - value;
 		checkSubZero();
 	}
-	
+
 	public void addHealth(int value) {
 		this.health = this.health + value;
 		checkAboveMax();
 	}
 
 	private void checkAboveMax() {
-		if (this.health > AttackInit.maxHealth);	
+		if (this.health > AttackInit.maxHealth)
+			;
 	}
-	
+
 	public int getHealth() {
 		return this.health;
 	}
@@ -36,5 +37,5 @@ public class Health {
 		if (this.health < 0)
 			this.health = 0;
 	}
-	
+
 }

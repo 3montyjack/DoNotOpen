@@ -75,4 +75,9 @@ public class Mob {
 		health.subtractHealth(damage(damage));
 	}
 
+	public void heal(int damage) {
+		health.addHealth(damage(damage));
+		
+	}
+
 }
