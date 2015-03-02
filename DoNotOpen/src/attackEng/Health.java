@@ -6,36 +6,41 @@ public class Health {
 
 	int health;
 
-	public Health(int startHealth) {
-		setHealth(startHealth);
+	public Health() {
 	}
 
 	public void setHealth(int value) {
-		this.health = value;
+		health = value;
 	}
 
 	public void subtractHealth(int value) {
-		this.health = this.health - value;
+		health = health - value;
+		System.out.println("Health " + value + "  " + health);
 		checkSubZero();
 	}
 
 	public void addHealth(int value) {
-		this.health = this.health + value;
+		health = health + value;
 		checkAboveMax();
 	}
 
 	private void checkAboveMax() {
-		if (this.health > AttackInit.maxHealth)
-			;
+		if (health > AttackInit.maxHealth)
+			health = AttackInit.maxHealth;
 	}
 
 	public int getHealth() {
-		return this.health;
+		return health;
 	}
 
 	private void checkSubZero() {
-		if (this.health < 0)
-			this.health = 0;
+		if (health < 0)
+			health = 0;
+	}
+
+	public void setInitHealth(int i) {
+		setHealth(i);
+		
 	}
 
 }

@@ -4,7 +4,7 @@ import main.AttackInit;
 
 public class MobList extends AttackInit {
 
-	Mob[] mobList = new Mob[mobNumber()];
+	static Mob[] mobList = new Mob[mobNumber()];
 	private int currentEnemy;
 
 	public MobList() {
@@ -23,23 +23,29 @@ public class MobList extends AttackInit {
 		return 0;
 	}
 	
-	public void damageMob(int mob, int damage) {
-		mobList[mob].damage(damage);
+	public static void damageMob(int mob, int damage) {
+		//System.out.println("Damage^2");
+		mobList[mob].damageHealth(damage);
 	}
 	
 	public void healMob(int mob, int damage) {
 		mobList[mob].heal(damage);
+	}
+	
+	public static int getArmorValue(int mob) {
+		return mobList[mob].getArmor();
 	}
 
 	public String getMobName(int slot) {
 		return mobList[slot].getName();
 	}
 
-	public int getHealth(int slot) {
+	public static int getHealth(int slot) {
+		//System.out.println("Umm Checked?");
 		return mobList[slot].getHealth();
 	}
 	
-	public int getCurrentEnemy() {
+	public int getCurrentMob() {
 		return currentEnemy;
 	}
 

@@ -2,10 +2,10 @@ package attackEng;
 
 public class Armor {
 
-	int armor;
+	int armor = 0;
 
-	public Armor(int ammount) {
-		setArmor(ammount);
+	public Armor() {
+		
 	}
 
 	private void setArmor(int ammount) {
@@ -14,5 +14,10 @@ public class Armor {
 
 	public int getArmor() {
 		return armor;
+	}
+
+	public void setInitArmor(int i) {
+		setArmor(i);
+		
 	}
 }

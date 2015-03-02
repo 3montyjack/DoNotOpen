@@ -10,6 +10,8 @@ public class Mob {
 	int type;
 
 	public Mob(String name, int type) {
+		health = new Health();
+		armor = new Armor();
 		this.name = name;
 		this.type = type;
 		switch (type) {
@@ -30,25 +32,25 @@ public class Mob {
 	}
 
 	private void makeNull() {
-		health = new Health(0);
-		armor = new Armor(0);
+		health.setInitHealth(0);
+		armor.setInitArmor(0);
 	}
 
 	private void makeAlien() {
-		health = new Health(AttackInit.alienHealth);
-		armor = new Armor(AttackInit.alienArmor);
+		health.setInitHealth(AttackInit.alienHealth);
+		armor.setInitArmor(AttackInit.alienArmor);
 
 	}
 
 	private void makeZombie() {
-		health = new Health(AttackInit.zombieHealth);
-		armor = new Armor(AttackInit.zombieArmor);
+		health.setInitHealth(AttackInit.zombieHealth);
+		armor.setInitArmor(AttackInit.zombieArmor);
 
 	}
 
 	private void makeHuman() {
-		health = new Health(AttackInit.humanHealth);
-		armor = new Armor(AttackInit.humanArmor);
+		health.setInitHealth(AttackInit.humanHealth);
+		armor.setInitArmor(AttackInit.humanArmor);
 
 	}
 
@@ -64,14 +66,16 @@ public class Mob {
 		return armor.getArmor();
 	}
 
-	public int damage(int ammount) {
-		if (ammount < getArmor()) {
+	//FLAG This math killed me!!!
+	private int damage(int ammount) {
+		if (ammount > getArmor()) {
 			return ammount - getArmor();
 		} else
 			return 0;
 	}
 
 	public void damageHealth(int damage) {
+		//System.out.println("Fuck Me");
 		health.subtractHealth(damage(damage));
 	}
 
