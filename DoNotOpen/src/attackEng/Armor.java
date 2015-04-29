@@ -5,7 +5,7 @@ public class Armor {
 	int armor = 0;
 
 	public Armor() {
-		
+
 	}
 
 	private void setArmor(int ammount) {
@@ -18,6 +18,5 @@ public class Armor {
 
 	public void setInitArmor(int i) {
 		setArmor(i);
-		
 	}
 }

@@ -1,6 +1,10 @@
 package main;
 
+import input.ItemReaderClass;
+import attackEng.ItemType;
+
 public class AttackInit {
+	ItemReaderClass items = new ItemReaderClass("items.txt");
 
 	// Health of Mobs
 	public static int humanHealth = 100, zombieHealth = 100, alienHealth = 100;
@@ -22,30 +26,43 @@ public class AttackInit {
 	}
 
 	// Items and Inventory
-	
-	//Whenever this is changed update set item in Inventory
+
+	// Whenever this is changed update set item in Inventory
 	private static int weaponSlot = 0, armorSlot = 1;
-	private static int weaponType = 0, armorType = 1, potionType = 2;
 	
 	public static int maxInventory = 10;
+	
+	private String[] itemName = new String[items.getNumValues()];
+	
+	private ItemType[] itemType = new ItemType[items.getNumValues()];
+	
+	private int[] itemDamage = new int[items.getNumValues()];
 
-	private static String[] itemName = { "Knife", "Leather Armor", "Health Potion", "Sword",
-			"Magic Fucker" };
+	private int[] itemSpecial = new int[items.getNumValues()];
+	
+	public void readToItemList() {
+		for (int i = 0; i < items.getNumValues(); i++) {
+			itemName[i] = items.getName(i);
+			itemType[i] = items.getType(i);
+			itemDamage[i] = items.getDamage(i);
+			itemSpecial[i] = items.getSpecial(i);
+		}
+	}
 
-	//Item types 0 = Weapon , 1 = Armor , 2 = Potion , 3 = Whatever
-	private static int[] itemType = { 0, 1, 2, 0, 3 };
+	
 
-	private static int[] itemDamage = { 10, 5, 7, 5, 3 };
+	// Item types 0 = Weapon , 1 = Armor , 2 = Potion , 3 = Whatever
+	
 
-	private static int[] itemSpecial = { 0, 0, 0, 0, 1 };
+
 
 	public static int maxHealth = 120;
-	
+
 	public static String emptySlot = "-Nothing-";
-	
+
 	public static int NonEquipS = 2;
 
-	public static int itemNumber() {
+	public int itemNumber() {
 		if (itemName.length == itemType.length
 				&& itemName.length == itemDamage.length
 				&& itemName.length == itemSpecial.length)
@@ -53,31 +70,19 @@ public class AttackInit {
 		else
 			return 0;
 	}
-	
+
 	public int getArmorSlot() {
 		return armorSlot;
 	}
-	
+
 	public int getWeaponSlot() {
 		return weaponSlot;
 	}
-	
-	public int getWeaponType() {
-		return weaponType;
-	}
-	
-	public int getArmorType() {
-		return armorType;
-	}
-	
-	public int getPotionType() {
-		return potionType;
-	}
-	
+
 	/////////////////////////////////////////////////////
-	
-	private static int[] defaultItems = { 0,1,2,3,4,4,3,2,1,0 };
-	
+
+	private static int[] defaultItems = { 0, 1, 2, 3, 4, 4, 3, 2, 1, 0 };
+
 	/////////////////////////////////////////////////////
 
 	public int setMobType(int slot) {
@@ -98,51 +103,34 @@ public class AttackInit {
 
 	// //////////////////////////////////
 
-	public int setItemType(int slot) {
+	public ItemType getItemType(int slot) {
 		return itemType[slot];
 	}
 
-	public int getItemType(int slot) {
-		return setItemType(slot);
-	}
-
-	public String setItemName(int slot) {
+	public String getItemName(int slot) {
 		return itemName[slot];
 	}
 
-	public String getItemName(int slot) {
-		return setItemName(slot);
-	}
-
-	public int setItemDamage(int slot) {
+	public int getItemDamage(int slot) {
 		return itemDamage[slot];
 	}
 
-	public int getItemDamage(int slot) {
-		return setItemDamage(slot);
-	}
-
-	public int setItemSpecial(int slot) {
+	public int getItemSpecial(int slot) {
 		return itemSpecial[slot];
 	}
 
-	public int getItemSpecial(int slot) {
-		return setItemSpecial(slot);
-	}
-	
+	// ///////////////////////////////////
 
-	/////////////////////////////////////
-	
 	public int getMaxInventory() {
 		return maxInventory;
 	}
-	
-	/////////////////////////////////////
-	
+
+	// ///////////////////////////////////
+
 	public int getDefaultItems(int slot) {
 		return defaultItems[slot];
 	}
-	
+
 	public String getNothingSlot() {
 		return emptySlot;
 	}

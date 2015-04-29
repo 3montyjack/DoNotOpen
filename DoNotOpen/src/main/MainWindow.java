@@ -24,7 +24,6 @@ import javax.swing.event.ChangeListener;
 
 import attackEng.Inventory;
 import attackEng.MobList;
-import javax.swing.JLayeredPane;
 
 /* <applet code='MainWindow' width=400 height=100></applet> */
 
@@ -56,6 +55,7 @@ public class MainWindow extends JApplet {
 
 	private String[] weapondsNEPlayer;
 	private String[] armorNEPlayer;
+	private String[] potionNEPlayer;
 	private JTextField currentWeapon;
 	private JTextField currentAttackInfo;
 
@@ -66,15 +66,19 @@ public class MainWindow extends JApplet {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public MainWindow() {
+		getContentPane().setBackground(Color.RED);
+		setBackground(Color.RED);
 
 		mobs = new MobList();
 		inv = new Inventory();
 		weapondsNEPlayer = new String[inv.getMaxInventory()
 				- inv.getNonEquipS()];
 		armorNEPlayer = new String[inv.getMaxInventory() - inv.getNonEquipS()];
+		potionNEPlayer = new String[inv.getMaxInventory() - inv.getNonEquipS()];
 		getContentPane().setBounds(0, 0, 1000, 1000);
 
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBorder(null);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
 		MainMenu = new JPanel();
@@ -214,7 +218,7 @@ public class MainWindow extends JApplet {
 
 		currentArmorInfo = new JTextField();
 		currentArmorInfo.setEditable(false);
-		currentArmorInfo.setText("Current Armor");
+		currentArmorInfo.setText("Current Weapon");
 		currentArmorInfo.setBounds(10, 10, 96, 20);
 		Inventory.add(currentArmorInfo);
 		currentArmorInfo.setColumns(10);
@@ -222,7 +226,7 @@ public class MainWindow extends JApplet {
 		currentWeaponInfo = new JTextField();
 		currentWeaponInfo.setHorizontalAlignment(SwingConstants.LEFT);
 		currentWeaponInfo.setEditable(false);
-		currentWeaponInfo.setText("Current Weapon");
+		currentWeaponInfo.setText("Current Armor");
 		currentWeaponInfo.setBounds(120, 10, 96, 20);
 		Inventory.add(currentWeaponInfo);
 		currentWeaponInfo.setColumns(10);
@@ -273,19 +277,20 @@ public class MainWindow extends JApplet {
 		});
 		weapondsList.setBorder(null);
 		weapondsList.setValueIsAdjusting(true);
-		weapondsList.setBounds(10, 70, 96, 194);
+		weapondsList.setBounds(10, 71, 96, 194);
 		Inventory.add(weapondsList);
 
 		JList armorList = new JList(armorNEPlayer);
 		armorList.setBounds(120, 70, 96, 196);
 		Inventory.add(armorList);
 
-		JList potionsList = new JList();
-		potionsList.setBounds(230, 41, 86, 222);
+		JList potionsList = new JList(potionNEPlayer);
+		potionsList.setBounds(230, 69, 86, 194);
 		Inventory.add(potionsList);
 
 		writeNameArrayArmorPlayer(mobs.getPlayerValue());
 		writeNameArrayWeaponsPlayer(mobs.getPlayerValue());
+		writeNameArrayPotionPlayer(mobs.getPlayerValue());
 
 	}
 
@@ -293,12 +298,12 @@ public class MainWindow extends JApplet {
 		try {
 			for (int i = 0; i < armorNEPlayer.length; i++) {
 				if (inv.checkArmor(inv.getItemType(mob, i + inv.getNonEquipS()))) {
-					System.out.println("iteration " + i);
-					// System.out.println(inv.getItemName(mob, i));
+					//System.out.println("iteration " + i);
+					//System.out.println(inv.getItemName(mob, i));
 					armorNEPlayer[i] = inv.getItemName(mob,
 							i + inv.getNonEquipS());
 				} else {
-					System.out.println("iteration else " + i);
+					//System.out.println("iteration else " + i);
 					// System.out.println(inv.getItemName(mob, i));
 					armorNEPlayer[i] = inv.getNothingSlot();
 				}
@@ -313,40 +318,39 @@ public class MainWindow extends JApplet {
 		try {
 			for (int i = 0; i < weapondsNEPlayer.length; i++) {
 				if (inv.checkWeapon(inv.getItemType(mob, i + inv.getNonEquipS()))) {
-					System.out.println("iteration " + i);
-					// System.out.println(inv.getItemName(mob, i));
+					//System.out.println("iteration " + i);
+					//	System.out.println(inv.getItemName(mob, i));
 					weapondsNEPlayer[i] = inv.getItemName(mob,
 							i + inv.getNonEquipS());
 				} else {
-					System.out.println("iteration else " + i);
-					// System.out.println(inv.getItemName(mob, i));
+					//System.out.println("iteration else " + i);
+					//System.out.println(inv.getItemName(mob, i));
 					weapondsNEPlayer[i] = inv.getNothingSlot();
 				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Error?");
 		}
-		// catch (NullPointerException e) {System.out.println("Caught it");}
 	}
 
 	public void writeNameArrayPotionPlayer(int mob) {
 		try {
-			for (int i = 0; i < weapondsNEPlayer.length; i++) {
-				if (inv.checkWeapon(inv.getItemType(mob, i + inv.getNonEquipS()))) {
-					System.out.println("iteration " + i);
+			for (int i = 0; i < potionNEPlayer.length; i++) {
+				if (inv.checkPotion(inv.getItemType(mob, i + inv.getNonEquipS()))) {
+					//System.out.println("iteration " + i);
 					// System.out.println(inv.getItemName(mob, i));
-					weapondsNEPlayer[i] = inv.getItemName(mob,
+					potionNEPlayer[i] = inv.getItemName(mob,
 							i + inv.getNonEquipS());
 				} else {
-					System.out.println("iteration else " + i);
+					//System.out.println("iteration else " + i);
 					// System.out.println(inv.getItemName(mob, i));
-					weapondsNEPlayer[i] = inv.getNothingSlot();
+					potionNEPlayer[i] = inv.getNothingSlot();
 				}
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Error?");
 		}
-		// catch (NullPointerException e) {System.out.println("Caught it");}
+
 	}
 
 	protected void updateBars() {
@@ -357,7 +361,7 @@ public class MainWindow extends JApplet {
 
 	}
 
-	/////////////////////////////////////////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////
 
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
@@ -370,7 +374,8 @@ public class MainWindow extends JApplet {
 			 * MainMenu.setVisible(false); Attack.setVisible(true);
 			 * Inventory.setVisible(false);
 			 */
-			tabbedPane.setSelectedIndex(1);;
+			tabbedPane.setSelectedIndex(1);
+			;
 		}
 	}
 

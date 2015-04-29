@@ -3,13 +3,13 @@ package attackEng;
 public class Item {
 
 	String name;
-	int type;
+	ItemType type;
 	int damage;
 	int special;
 
-	public Item(String name, int type, int damage, int special) {
+	public Item(String name, ItemType itemType, int damage, int special) {
 		this.name = name;
-		this.type = type;
+		this.type = itemType;
 		this.damage = damage;
 		this.special = special;
 	}
@@ -18,7 +18,7 @@ public class Item {
 		return name;
 	}
 
-	public int getType() {
+	public ItemType getType() {
 		return type;
 	}
 

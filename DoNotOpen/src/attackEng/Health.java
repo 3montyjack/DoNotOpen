@@ -15,8 +15,8 @@ public class Health {
 
 	public void subtractHealth(int value) {
 		health = health - value;
-		System.out.println("Health " + value + "  " + health);
 		checkSubZero();
+		System.out.println("Health " + value + "  " + health);
 	}
 
 	public void addHealth(int value) {
