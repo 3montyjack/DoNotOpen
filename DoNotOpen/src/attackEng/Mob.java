@@ -7,21 +7,21 @@ public class Mob {
 	Health health;
 	Armor armor;
 	String name;
-	int type;
+	MobType type;
 
-	public Mob(String name, int type) {
+	public Mob(String name, MobType mobType) {
 		health = new Health();
 		armor = new Armor();
 		this.name = name;
-		this.type = type;
-		switch (type) {
-		case 1:
+		this.type = mobType;
+		switch (mobType) {
+		case Human:
 			makeHuman();
 			break;
-		case 2:
+		case Zombie:
 			makeZombie();
 			break;
-		case 3:
+		case Alien:
 			makeAlien();
 			break;
 		default:

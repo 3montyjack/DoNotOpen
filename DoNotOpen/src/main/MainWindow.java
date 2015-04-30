@@ -3,6 +3,8 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -81,9 +84,12 @@ public class MainWindow extends JApplet {
 		tabbedPane.setBorder(null);
 		getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
+		//TODO important shit
 		MainMenu = new JPanel();
 		tabbedPane.addTab("Main Menu", null, MainMenu, null);
 		MainMenu.setLayout(null);
+		MainMenu.repaint();
+		
 
 		JTextField mainMenuTxt = new JTextField();
 		mainMenuTxt.setForeground(new Color(0, 128, 0));
@@ -413,6 +419,18 @@ public class MainWindow extends JApplet {
 			 * Inventory.setVisible(true);
 			 */
 			tabbedPane.setSelectedIndex(2);
+		}
+	}
+	
+	private class JPanelImage extends JPanel {
+		public JPanelImage() {
+			super();
+		}
+		
+		@Override
+		public void paintComponent(Graphics g) {
+			Image image=new ImageIcon("//images/raptor.jpeg").getImage();
+			g.drawImage(image, image.getWidth(this), image.getHeight(this), this);
 		}
 	}
 }

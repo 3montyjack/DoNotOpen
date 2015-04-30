@@ -19,6 +19,8 @@ public class ItemReaderClass extends ReaderClass {
 			return ItemType.Weapon;
 		case 1:
 			return ItemType.Armor;
+		case 2:
+			return ItemType.Potion;
 		case 3:
 			return ItemType.Magic_Thing;
 		default:

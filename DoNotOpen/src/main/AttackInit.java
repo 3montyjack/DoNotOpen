@@ -1,28 +1,37 @@
 package main;
 
 import input.ItemReaderClass;
+import input.MobReaderClass;
 import attackEng.ItemType;
+import attackEng.MobType;
 
 public class AttackInit {
-	ItemReaderClass items = new ItemReaderClass("items.txt");
-
+	static ItemReaderClass items = new ItemReaderClass("items.txt");
+	static MobReaderClass mobs = new MobReaderClass("mobs.txt");
+	
 	// Health of Mobs
 	public static int humanHealth = 100, zombieHealth = 100, alienHealth = 100;
 
-	// Health of Mobs
+	// Armor of Mobs
 	public static int humanArmor = 10, zombieArmor = 10, alienArmor = 10;
 
-	// MobList MOBS : Types List 1 = human, 2 = zombie, 3 = alien
-	private static int[] mobType = { 1, 2, 3, 1, 1, 3, 3, 3, 2, 2 };
+	// MobList MOBS : Types List 0 = human, 1 = zombie, 2 = alien
+	private static MobType[] mobType = new MobType[mobs.getNumValues()];
 
-	private static String[] mobName = { "Player", "Me", "Nupe", "Caka",
-			"Enemy", "Enemy", "Enemy", "Enemy", "Enemy", "Enemy" };
+	private static String[] mobName = new String[mobs.getNumValues()];
 
 	public static int mobNumber() {
 		if (mobType.length == mobName.length)
 			return mobType.length;
 		else
 			return 0;
+	}
+	
+	public void readToMobList() {
+		for (int i = 0; i < mobs.getNumValues(); i++) {
+			mobName[i] = mobs.getName(i);
+			mobType[i] = mobs.getType(i);
+		}
 	}
 
 	// Items and Inventory
@@ -81,24 +90,16 @@ public class AttackInit {
 
 	/////////////////////////////////////////////////////
 
-	private static int[] defaultItems = { 0, 1, 2, 3, 4, 4, 3, 2, 1, 0 };
+	private static int[] defaultItems = { 0, 1, 2, 3, 3, 3, 3, 2, 1, 0 };
 
 	/////////////////////////////////////////////////////
 
-	public int setMobType(int slot) {
+	public MobType getMobType(int slot) {
 		return mobType[slot];
 	}
 
-	public int getMobType(int slot) {
-		return setMobType(slot);
-	}
-
-	public String setMobName(int slot) {
-		return mobName[slot];
-	}
-
 	public String getMobName(int slot) {
-		return setMobName(slot);
+		return mobName[slot];
 	}
 
 	// //////////////////////////////////

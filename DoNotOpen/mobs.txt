@@ -1,0 +1,10 @@
+Player : 0
+Me : 1
+Nupe : 2
+Caka : 0
+Enemy : 0
+Enemy : 1
+Enemy : 1
+Enemy : 1
+Enemy : 2
+Enemy : 2

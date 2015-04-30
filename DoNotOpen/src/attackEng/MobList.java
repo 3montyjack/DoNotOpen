@@ -12,7 +12,7 @@ public class MobList extends AttackInit {
 		try {
 			for (int slot = 0; slot <= mobList.length; slot++) {
 				// System.out.println("Attempt" + slot);
-				mobList[slot] = new Mob(setMobName(slot), setMobType(slot));
+				mobList[slot] = new Mob(getMobName(slot), getMobType(slot));
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			// System.out.println("Umm Error?");
